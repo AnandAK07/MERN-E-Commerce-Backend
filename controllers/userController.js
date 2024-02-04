@@ -29,6 +29,7 @@ const signup=async(req,res)=>{
 
 const login=async(req,res)=>{
 
+    try {
         const { email, password } = req.body
         console.log({ email, password })
         const users = await userModel.find({ email: email });
@@ -52,6 +53,10 @@ const login=async(req,res)=>{
                 return res.status(401).send({ message: 'Authentication failed. Invalid password.' })
             }
         });
+    } catch (error) {
+        console.error('Error during login:', error);
+        return res.status(500).send({ message: 'Internal server error.' });
+    }
         // res.send('login')
 }
 
