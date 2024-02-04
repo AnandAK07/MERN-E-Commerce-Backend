@@ -31,14 +31,14 @@ const login=async(req,res)=>{
 
     try {
         const { email, password } = req.body
-        console.log({ email, password })
-        const users = await userModel.find({ email: email });
-        const user=users[0]
-        console.log(user)
+        // console.log({ email, password })
+        const user = await userModel.findOne({ email: email });
+        // const user=users[0]
+        // console.log(user)
         const userId = user._id.toString()
-        console.log(userId)
+        // console.log(userId)
         const hash = user.password
-        console.log(hash)
+        // console.log(hash)
 
         bcrypt.compare(password, hash, function (err, result) {
             if (err) {

@@ -32,7 +32,7 @@ const authentication=(req,res,next)=>{
         if(decoded){
             console.log(decoded.userId)
             let userId = decoded.userId
-            req.body = (userId)
+            req.body.userId = (userId)
             next();
         }else{
             return res.status(401).send({message:'Unauthorized access. Invalid or expired token.'})
