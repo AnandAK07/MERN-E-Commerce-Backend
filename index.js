@@ -3,7 +3,7 @@ const connection=require('./configs/db')
 const userRouter=require('./routes/user.route')
 const authentication = require('./middlewares/authentication');
 const productRouter=require('./routes/product.route');
-// const cartRouter = require('./routes/cart.route');
+const cartRouter = require('./routes/cart.route');
 const cors=require('cors')
 
 const dotenv = require('dotenv');
@@ -22,7 +22,7 @@ app.get('/',(req,res)=>{
 app.use('/users', userRouter)
 app.use(authentication)
 app.use('/product', productRouter)
-// app.use('/cart',cartRouter)
+app.use('/cart',cartRouter)
 
 
 const PORT=process.env.PORT
