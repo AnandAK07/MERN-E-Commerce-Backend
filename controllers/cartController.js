@@ -1,42 +1,5 @@
-// const express = require('express');
-// const router = express.Router();
 const userModel = require('../models/user.model');
-const productModel = require('../models/product.model')
 
-// router.get('/', async (req, res) => {
-//     const product = await userModel.find()
-//     res.send(product)
-// })
-
-
-// router.post('/create', async (req, res) => {
-//     const { title, description, price, discountPercentage, rating, stock, brand, category, thumbnail, images } = req.body;
-//     console.log({ title, description, price, discountPercentage, rating, stock, brand, category, thumbnail, images })
-
-//     const product = await userModel.create({ title, description, price, discountPercentage, rating, stock, brand, category, thumbnail, images })
-
-//     res.send(product)
-// })
-
-// router.patch('/edit/:id', async (req, res) => {
-//     const { id } = req.params
-//     console.log(id)
-//     const product = await userModel.findByIdAndUpdate({ _id: id }, req.body)
-//     // res.send(product)
-//     res.send(product)
-// })
-
-
-// router.delete('/delete/:id', async (req, res) => {
-//     const { id } = req.params
-//     console.log(id)
-//     const product = await userModel.findByIdAndDelete(id)
-//     // res.send(product)
-//     res.send(product)
-// })
-
-
-// module.exports = router
 
 const addProduct = async (req, res) => {
     const { userId, productId } = req.body;
@@ -158,32 +121,5 @@ const removeProduct = async (req, res) => {
         res.status(500).json({ error: 'An error occured' })
     }
 }
-
-// const removeProduct = async (req, res) => {
-//     try {
-//         const { userId, productId } = req.body;
-
-//         const user = await userModel.findById(userId);
-
-//         if (!user) {
-//             return res.status(404).json({ message: 'User not found' });
-//         }
-
-//         const productIndex = user.cart.findIndex(
-//             (item) => item.productId.toString() === productId.toString()
-//         );
-
-//         if (productIndex !== -1) {
-//             user.cart.splice(productIndex, 1);
-//             await user.save();
-//             return res.status(200).json({ message: 'Product removed from cart' });
-//         } else {
-//             return res.status(404).json({ message: 'Product not found in cart' });
-//         }
-//     } catch (error) {
-//         console.log('Error removing product from cart:', error);
-//         return res.status(500).json({ error: 'An error occurred' });
-//     }
-// }
 
 module.exports = { addProduct, getAllProducts, removeProduct, updateQuantity }

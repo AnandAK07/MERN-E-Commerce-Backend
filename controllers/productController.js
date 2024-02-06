@@ -11,6 +11,18 @@ const getAllProducts = async (req, res) => {
     }
 }
 
+const getSingleProduct=async(req,res)=>{
+    const {id}=req.params;
+    console.log(id)
+    try {
+        const product=await productModel.findOne({_id:id});
+        return res.status(200).json(product)
+    } catch (error) {
+        console.error('Error fetching product:', error);
+       return res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
 const addSingleProduct = async (req, res) => {
     const { title, description, price, discountPercentage, rating, stock, brand, category, thumbnail, images } = req.body;
     if (!title || !description || !price || !discountPercentage || !rating || !stock || !brand || !category || !thumbnail || !images) {
@@ -19,18 +31,22 @@ const addSingleProduct = async (req, res) => {
 
     try {
         const product = await productModel.create({ title, description, price, discountPercentage, rating, stock, brand, category, thumbnail, images })
-        res.status(201).json(product)
+        return res.status(201).json(product)
     } catch (error) {
         console.log('Error adding product:', error);
-        res.status(500).json({ error: 'Internal server error' })
+        return res.status(500).json({ error: 'Internal server error' })
     }
 }
 
 const updateProduct = async (req, res) => {
     const { id } = req.params
     console.log(id)
-    const product = await productModel.findByIdAndUpdate({ _id: id }, req.body)
-    res.send(product)
+    try {
+        const product = await productModel.findByIdAndUpdate({ _id: id }, req.body)
+        return res.send(product)
+    } catch (error) {
+        return res.status(500).send({error:'Internal server error'})
+    }
 }
 
 
@@ -45,19 +61,8 @@ const deleteProduct = async (req, res) => {
     }
 }
 
-// router.delete('/delete/:id', async (req, res) => {
-//     const { id } = req.params
-//     console.log(id)
-//     try {
-//         const product = await Product.findByIdAndDelete(id)
-//         // res.send(product)
-//         res.status(200).json(product)
-//     } catch (error) {
-//         console.error('Error fetching products:', error);
-//         res.status(500).json({ error: 'Internal server error' });
-//     }
-// })
 
 
 
-module.exports = { getAllProducts, addSingleProduct, updateProduct, deleteProduct }
+
+module.exports = { getAllProducts, getSingleProduct, addSingleProduct, updateProduct, deleteProduct }
