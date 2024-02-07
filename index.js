@@ -4,6 +4,7 @@ const userRouter=require('./routes/user.route')
 const authentication = require('./middlewares/authentication');
 const productRouter=require('./routes/product.route');
 const cartRouter = require('./routes/cart.route');
+const addressRouter=require('./routes/address.route')
 const cors=require('cors')
 
 const dotenv = require('dotenv');
@@ -23,6 +24,7 @@ app.use('/users', userRouter)
 app.use(authentication)
 app.use('/product', productRouter)
 app.use('/cart',cartRouter)
+app.use('/address',addressRouter)
 
 
 const PORT=process.env.PORT
