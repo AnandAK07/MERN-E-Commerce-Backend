@@ -1,5 +1,8 @@
 const userModel = require('../models/user.model');
 
+const addAllProduct = async (req, res) => {
+    res.send('done...')
+}
 
 const addProduct = async (req, res) => {
     const { userId, productId } = req.body;

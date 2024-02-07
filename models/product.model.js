@@ -48,8 +48,20 @@ const productSchema=mongoose.Schema({
         type: String,
         required: true
     },
-    images: {
-        type: [String],
+    image1: {
+        type: String,
+        required: true
+    },
+    image2: {
+        type: String,
+        required: true
+    },
+    image3: {
+        type: String,
+        required: true
+    },
+    image4: {
+        type: String,
         required: true
     }
 });
