@@ -84,7 +84,7 @@ const updateQuantity = async (req, res) => {
 
         if (cartItem) {
             if (update ==- 1) {
-                if (cartItem.quantity >= 1) {
+                if (cartItem.quantity > 1) {
                     cartItem.quantity -= 1;
                 }
             } else {
